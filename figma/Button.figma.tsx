@@ -1,31 +1,37 @@
 /**
- * Шаблон маппинга Code Connect. Скопируйте его на каждый из 8–12 компонентов пилота.
+ * Шаблон маппинга Code Connect для ViennaUI. Скопируйте его на каждый компонент пилота.
  *
- * 1. Замените импорт на реальный компонент из дизайн-системы.
- * 2. Вставьте ссылку на компонент в Figma (ПКМ по компоненту → Copy link to selection).
- * 3. Сопоставьте свойства Figma с пропсами кода.
- * 4. Проверьте: npm run figma:connect:parse, затем опубликуйте: npm run figma:connect:publish
+ * Пока Figma-файла с библиотекой нет — этот шаблон не публикуется, а конфигурация B
+ * эксперимента не запускается (см. README → «Без Figma»).
+ *
+ * Когда библиотека появится:
+ * 1. Вставьте ссылку на компонент в Figma (ПКМ по компоненту → Copy link to selection).
+ * 2. Сверьте названия свойств в Figma (Design, Size, Loading, Disabled) с вашими.
+ * 3. Проверьте: npm run figma:connect:parse, опубликуйте: npm run figma:connect:publish
  *    (нужен токен FIGMA_ACCESS_TOKEN со scope Code Connect).
- *
- * Черновики маппингов можно сгенерировать bitovi/superconnect, но вычитывайте их руками.
  */
 import figma from "@figma/code-connect";
-// import { Button } from "TODO-ds-package";
-const Button = (_props: Record<string, unknown>) => null; // TODO: удалить заглушку
+import { Button } from "vienna-ui";
 
 figma.connect(Button, "https://www.figma.com/design/TODO_FILE_KEY/TODO?node-id=TODO", {
   props: {
     label: figma.string("Label"),
-    variant: figma.enum("Variant", {
+    design: figma.enum("Design", {
+      Accent: "accent",
       Primary: "primary",
-      Secondary: "secondary",
-      Danger: "danger",
+      Outline: "outline",
+      Critical: "critical",
+      "Outline critical": "outline-critical",
+      Ghost: "ghost",
+      "Ghost accent": "ghost-accent",
+      Neutral: "neutral",
     }),
+    size: figma.enum("Size", { XS: "xs", S: "s", M: "m", L: "l", XL: "xl", XXL: "xxl" }),
+    loading: figma.boolean("Loading"),
     disabled: figma.boolean("Disabled"),
-    size: figma.enum("Size", { Small: "sm", Medium: "md", Large: "lg" }),
   },
-  example: ({ label, variant, disabled, size }) => (
-    <Button variant={variant} size={size} disabled={disabled}>
+  example: ({ label, design, size, loading, disabled }) => (
+    <Button design={design} size={size} loading={loading} disabled={disabled}>
       {label}
     </Button>
   ),

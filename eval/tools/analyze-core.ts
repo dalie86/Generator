@@ -16,7 +16,12 @@ export interface PilotConfig {
   foreignUiImports: string[];
   rawInteractiveElements: string[];
   allowedRawProperties: string[];
+  /** Пропсы отступов компонентов DS (margin, gap…): строковые px в них — тоже сырые значения. */
+  spacingProps?: string[];
 }
+
+/** Манифест DS: пакет → список экспортируемых компонентов. */
+export type DsManifest = Record<string, string[]>;
 
 export interface Finding {
   file: string;
@@ -60,6 +65,12 @@ export interface ScreenMetrics {
 const ENV_ERRORS = new Set([2307, 2875, 7026, 2503]);
 
 const STYLE_PROPS = new Set(["style", "sx", "css"]);
+const DEFAULT_SPACING_PROPS = [
+  "margin", "marginTop", "marginBottom", "marginLeft", "marginRight", "marginHorizontal", "marginVertical",
+  "m", "mt", "mb", "ml", "mr", "mh", "mv",
+  "padding", "paddingTop", "paddingBottom", "paddingLeft", "paddingRight", "p", "pt", "pb", "pl", "pr",
+  "gap", "rowGap", "columnGap",
+];
 const CLASS_PROPS = new Set(["className", "class"]);
 
 export function listScreenFiles(dir: string): string[] {
@@ -86,7 +97,7 @@ function isComponentName(name: string): boolean {
 export function analyzeFiles(
   files: string[],
   cfg: PilotConfig,
-  opts: { manifest?: string[]; withTypecheck?: boolean; tsconfigPath?: string } = {},
+  opts: { manifest?: DsManifest; withTypecheck?: boolean; tsconfigPath?: string } = {},
 ): ScreenMetrics {
   const m: ScreenMetrics = {
     files,
@@ -108,6 +119,7 @@ export function analyzeFiles(
     findings: [],
   };
   const dsUsed = new Set<string>();
+  const spacingProps = new Set(cfg.spacingProps ?? DEFAULT_SPACING_PROPS);
 
   for (const file of files) {
     const text = fs.readFileSync(file, "utf8");
@@ -179,12 +191,15 @@ export function analyzeFiles(
     if (opts.manifest) {
       for (const stmt of sf.statements) {
         if (!ts.isImportDeclaration(stmt) || !ts.isStringLiteral(stmt.moduleSpecifier)) continue;
-        if (!isDsImport(stmt.moduleSpecifier.text, cfg.dsImportPaths)) continue;
+        const known = opts.manifest[stmt.moduleSpecifier.text];
+        if (!known) continue; // для пакета нет манифеста (например, иконки) — не проверяем
+        if (stmt.importClause?.isTypeOnly) continue;
         const nb = stmt.importClause?.namedBindings;
         if (nb && ts.isNamedImports(nb)) {
           for (const el of nb.elements) {
+            if (el.isTypeOnly) continue;
             const exported = (el.propertyName ?? el.name).text;
-            if (!opts.manifest.includes(exported) && /^[A-Z]/.test(exported)) {
+            if (!known.includes(exported) && /^[A-Z]/.test(exported)) {
               m.inventedComponents++;
               add(el, "invented-component", exported);
             }
@@ -277,6 +292,9 @@ export function analyzeFiles(
             else checkStyleValue(expr, name);
           } else if (CLASS_PROPS.has(name)) {
             checkClassName(expr);
+          } else if (spacingProps.has(name) && isComponentName(node.tagName.getText(sf).split(".")[0])) {
+            // <Flex gap="13px" /> вместо gap="s4"
+            checkStyleValue(expr, name);
           }
         }
       }
@@ -320,6 +338,13 @@ export function analyzeFiles(
         }
       }
     }
+  }
+
+  // Без установленного окружения остальные ошибки типов недостоверны (всё становится any) — не считаем их.
+  if (m.typecheck === "skipped") {
+    m.invalidProps = 0;
+    m.otherTypeErrors = 0;
+    m.findings = m.findings.filter((f) => f.kind !== "type-error" && f.kind !== "invalid-prop");
   }
 
   m.dsComponentsUsed = [...dsUsed].sort();

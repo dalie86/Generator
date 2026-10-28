@@ -19,7 +19,21 @@ function loadConfig() {
 }
 
 const STYLE_PROPS = new Set(["style", "sx", "css"]);
+const DEFAULT_SPACING_PROPS = [
+  "margin", "marginTop", "marginBottom", "marginLeft", "marginRight", "marginHorizontal", "marginVertical",
+  "m", "mt", "mb", "ml", "mr", "mh", "mv",
+  "padding", "paddingTop", "paddingBottom", "paddingLeft", "paddingRight", "p", "pt", "pb", "pl", "pr",
+  "gap", "rowGap", "columnGap",
+];
 const CLASS_PROPS = new Set(["className", "class"]);
+
+function elementName(opening) {
+  const n = opening?.name;
+  if (!n) return "";
+  if (n.type === "JSXIdentifier") return n.name;
+  if (n.type === "JSXMemberExpression") return elementName({ name: n.object });
+  return "";
+}
 
 function stringsIn(node) {
   if (!node) return [];
@@ -43,7 +57,9 @@ const noRawValues = {
     schema: [],
   },
   create(context) {
-    const allowed = loadConfig().allowedRawProperties ?? [];
+    const cfg = loadConfig();
+    const allowed = cfg.allowedRawProperties ?? [];
+    const spacing = new Set(cfg.spacingProps ?? DEFAULT_SPACING_PROPS);
     const checkObject = (obj) => {
       for (const p of obj.properties) {
         if (p.type !== "Property") continue;
@@ -80,6 +96,15 @@ const noRawValues = {
           for (const s of stringsIn(node.value))
             for (const v of findRawValuesInString(s.value, { isClassName: true }))
               context.report({ node: s.node, messageId: "raw", data: { value: v, prop: "className" } });
+        } else if (spacing.has(name) && /^[A-Z]/.test(elementName(node.parent))) {
+          // <Flex gap="13px"> вместо gap="s4" — у компонентов DS шкала отступов своя
+          const expr = node.value.type === "JSXExpressionContainer" ? node.value.expression : node.value;
+          if (expr.type === "Literal" && typeof expr.value === "number" && isRawNumericStyle(name, expr.value, allowed)) {
+            context.report({ node: expr, messageId: "raw", data: { value: String(expr.value), prop: name } });
+          }
+          for (const s of stringsIn(node.value))
+            for (const v of findRawValuesInString(s.value))
+              context.report({ node: s.node, messageId: "raw", data: { value: v, prop: name } });
         }
       },
     };

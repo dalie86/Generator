@@ -3,7 +3,7 @@ name: ds-ui
 description: Use for ANY task that creates, changes or reviews UI screens in this repo — building a screen from a Figma frame or a text description, reviewing a screen, or editing UI copy. Defines how to find and use design-system components and tokens, the product rules for forms, and the self-check before finishing.
 ---
 
-# ds-ui — экраны из компонентов дизайн-системы
+# ds-ui — экраны из компонентов ViennaUI
 
 ## Режим работы
 
@@ -39,11 +39,13 @@ description: Use for ANY task that creates, changes or reviews UI screens in thi
 ## Чек-лист перед «готово»
 
 - [ ] Все интерактивные элементы — компоненты DS (нет нативных `button/input/select/textarea/dialog/table`).
-- [ ] Ни одного hex, rgb, px или `[…]`-класса; все стили — токены или пропсы.
+- [ ] Ни одного hex, rgb, px или `[…]`-класса; отступы — только `s1…s16`.
 - [ ] Ни одного своего компонента, повторяющего компонент DS.
 - [ ] Каждый проп существует в документации компонента.
-- [ ] Правила форм из `references/rules.md` соблюдены.
-- [ ] У каждого поля есть видимая подпись; у иконок-кнопок — доступное имя.
+- [ ] Каждое поле — в `FormField` с `FormField.Label`; ошибки — `FormField.Message color="critical"`.
+- [ ] Обработчики `onChange`/`onSelect` компонентов ViennaUI принимают `{ value }`, а не DOM-событие.
+- [ ] Не больше одной кнопки `design="accent"` на экране.
+- [ ] Остальные правила из `references/rules.md` соблюдены; у иконок-кнопок есть доступное имя.
 - [ ] Есть состояния ошибки и загрузки, если экран что-то отправляет или загружает.
 - [ ] typecheck и lint без ошибок.
 

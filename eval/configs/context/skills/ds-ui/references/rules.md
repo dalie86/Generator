@@ -9,29 +9,33 @@
 
 | ID | Правило | Уровень | Проверка |
 |---|---|---|---|
-| `ds/only-ds-components` | Интерактивные элементы — только компоненты DS | P0 | линтер `ds/no-raw-interactive`, анализатор |
-| `ds/only-tokens` | Цвета, отступы, радиусы, тени — только токены | P1 | линтер `ds/no-raw-values` |
+| `ds/only-ds-components` | Интерактивные элементы — только компоненты ViennaUI | P0 | линтер `ds/no-raw-interactive`, анализатор |
+| `ds/only-tokens` | Цвета, отступы, радиусы, тени — только токены и шкала `s1…s16` | P1 | линтер `ds/no-raw-values` |
 | `ds/no-foreign-ui` | Никаких других UI-библиотек | P0 | линтер `ds/no-foreign-ui` |
-| `ds/no-invented-props` | Только пропсы из документации | P1 | typecheck |
+| `ds/no-invented-props` | Только пропсы из документации в Storybook | P1 | typecheck, анализатор |
 | `ds/stop-if-missing` | Нет компонента → спросить, не собирать свой | P1 | ревью |
+| `ds/no-local-components` | Не объявлять в файле экрана свои компоненты, повторяющие ViennaUI | P1 | анализатор |
 
 ## Формы
 
 | ID | Правило | Уровень |
 |---|---|---|
-| `form/visible-label` | У каждого поля видимая подпись над полем; placeholder не заменяет подпись | P1 |
-| `form/required-marking` | Обязательные поля помечены одинаково по всей форме | P2 |
-| `form/inline-errors` | Ошибка показывается под полем, текстом: что не так и как исправить | P1 |
-| `form/submit-state` | Кнопка отправки показывает загрузку и не даёт отправить дважды | P1 |
-| `form/primary-single` | Одна основная (primary) кнопка на форму | P2 |
-| `form/button-order` | Основная кнопка справа, отмена слева от неё | P3 |
-| `form/radio-for-few` | 2–3 статичных варианта — радиокнопки, не выпадающий список | P2 |
-| `form/destructive-label` | Деструктивная кнопка: глагол + объект («Удалить проект»), никаких «OK» и «Подтвердить» | P1 |
-| `form/no-nested-modal` | Модалка не открывается поверх модалки | P1 |
+| `form/field-wrapper` | Каждое поле — внутри `FormField` с `FormField.Label` | P1 |
+| `form/visible-label` | Подпись видна над полем; placeholder подпись не заменяет | P1 |
+| `form/required-marking` | Обязательные поля — `FormField.Label required`, одинаково по всей форме | P2 |
+| `form/inline-errors` | Ошибка — `FormField.Message color="critical"` под полем + `invalid` у поля; текст: что не так и как исправить | P1 |
+| `form/submit-state` | Кнопка отправки — `loading` на время запроса, повторная отправка невозможна | P1 |
+| `form/single-accent` | Не больше одной `design="accent"` кнопки на экране | P2 |
+| `form/button-order` | В `Groups` футера: сначала «Отмена» (`outline`), затем основное действие | P3 |
+| `form/radio-for-few` | 2–3 статичных варианта — `Radio`, не `Select` | P2 |
+| `form/destructive-label` | Деструктивная кнопка: `design="critical"`, текст «глагол + объект» («Удалить проект»), никаких «OK» и «Подтвердить» | P1 |
+| `form/no-nested-modal` | `Modal` не открывается поверх `Modal` | P1 |
 
-## Тексты
+## Тексты и состояния
 
 | ID | Правило | Уровень |
 |---|---|---|
 | `copy/sentence-case` | Заголовки и кнопки с заглавной только первой буквы | P3 |
-| `copy/empty-state-action` | Пустое состояние объясняет, что здесь будет, и даёт действие | P2 |
+| `state/empty` | Пустой список — `EmptyState` с объяснением и действием | P2 |
+| `state/error` | Ошибка загрузки — `Alert design="error"` с действием «Повторить» | P2 |
+| `state/loading` | Загрузка — `Spinner` или `Skeleton`, а не пустой экран | P2 |

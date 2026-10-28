@@ -12,7 +12,7 @@ const cfg: PilotConfig = {
   rawInteractiveElements: ["button", "input", "select", "textarea", "dialog", "table"],
   allowedRawProperties: ["display"],
 };
-const manifest = ["Button", "TextField", "Modal", "Stack", "Select"];
+const manifest = { "@acme/ds": ["Button", "TextField", "Modal", "Stack", "Select"] };
 
 test("хороший экран: всё из DS, без нарушений", () => {
   const m = analyzeFiles(listScreenFiles(path.join(here, "fixtures/good")), cfg, { manifest });
@@ -27,8 +27,8 @@ test("хороший экран: всё из DS, без нарушений", () 
 
 test("плохой экран: ловим все типы нарушений", () => {
   const m = analyzeFiles(listScreenFiles(path.join(here, "fixtures/bad")), cfg, { manifest });
-  // Сырые значения: padding 13, 6px, #fafafa, rgb(...), p-[13px], text-[#c62828]
-  assert.equal(m.rawValues, 6, JSON.stringify(m.findings.filter((f) => f.kind === "raw-value")));
+  // Сырые значения: padding 13, 6px, #fafafa, rgb(...), p-[13px], text-[#c62828], mt="20px"
+  assert.equal(m.rawValues, 7, JSON.stringify(m.findings.filter((f) => f.kind === "raw-value")));
   assert.equal(m.rawInteractive, 2); // <input>, <button>
   assert.equal(m.foreignImports, 1); // @mui/material
   assert.equal(m.foreignElements, 1); // <Dialog>

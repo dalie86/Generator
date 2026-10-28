@@ -16,6 +16,8 @@ tester.run("no-raw-values", plugin.rules["no-raw-values"], {
     `<div style={{ padding: "var(--space-4)", display: "flex", opacity: 0.5, margin: 0 }} />`,
     `<div className="flex gap-4" />`,
     `<div style={{ color: "var(--color-text, #000)" }} />`,
+    `<Flex gap="s4" mt="s2" />`,
+    `<div gap="13px" />`,
   ],
   invalid: [
     { code: `<div style={{ padding: 13 }} />`, errors: 1 },
@@ -23,6 +25,8 @@ tester.run("no-raw-values", plugin.rules["no-raw-values"], {
     { code: `<div className="p-[13px] text-[#fff] flex" />`, errors: 2 },
     { code: "<div className={`p-[3px] ${a}`} />", errors: 1 },
     { code: `<div style={{ "&:hover": { background: "rgb(1,2,3)" } }} />`, errors: 1 },
+    { code: `<Flex gap="13px" mt={20} />`, errors: 2 },
+    { code: `<Modal.Body padding="8px" />`, errors: 1 },
   ],
 });
 

@@ -12,7 +12,7 @@ export default function Screen() {
         <input placeholder="Название" />
         <button style={{ color: "rgb(200, 40, 40)" }}>OK</button>
       </Card>
-      <Button variant="primary">Сохранить</Button>
+      <Button variant="primary" mt="20px">Сохранить</Button>
       <SuperTable rows={[]} />
       <Dialog open />
       <Mystery />

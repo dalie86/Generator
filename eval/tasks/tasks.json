@@ -1,50 +1,70 @@
 {
-  "$comment": "10 задач пилота. type: figma — экран по фрейму, prompt — по текстовому описанию. holdout: задачи, по которым НЕ подбирают правила и примеры в skill — проверка обобщения. figmaNode заполняет дизайнер: ссылка на фрейм (Copy link to selection). Для конфигурации A дополнительно положите скриншот фрейма в eval/tasks/<id>/reference.png.",
+  "$comment": "10 задач-примеров для старта. type: figma — экран по фрейму, prompt — по текстовому описанию. Пока фреймов в Figma нет (figmaNode: null), figma-задачи идут как текстовые по brief. holdout — задачи, по которым НЕ подбирают правила и примеры в skill: проверка обобщения. Задачи можно заменить на реальные экраны продукта.",
   "tasks": [
     {
       "id": "T01",
       "type": "figma",
       "holdout": false,
       "title": "Создание проекта",
-      "figmaNode": "TODO",
+      "figmaNode": null,
       "brief": "Форма создания проекта: название (обязательно), описание, видимость (2 варианта), кнопки «Создать проект» и «Отмена». Состояния: ошибка валидации названия, отправка.",
-      "expect": ["form/visible-label", "form/inline-errors", "form/submit-state", "form/radio-for-few", "form/primary-single"]
+      "expect": [
+        "form/visible-label",
+        "form/inline-errors",
+        "form/submit-state",
+        "form/radio-for-few",
+        "form/single-accent"
+      ]
     },
     {
       "id": "T02",
       "type": "figma",
       "holdout": false,
       "title": "Настройки профиля",
-      "figmaNode": "TODO",
+      "figmaNode": null,
       "brief": "Настройки профиля: имя, email (только чтение), язык интерфейса (6 языков), часовой пояс, переключатель уведомлений, кнопка «Сохранить изменения». Toast после сохранения.",
-      "expect": ["form/visible-label", "form/submit-state", "form/primary-single"]
+      "expect": [
+        "form/visible-label",
+        "form/submit-state",
+        "form/single-accent"
+      ]
     },
     {
       "id": "T03",
       "type": "figma",
       "holdout": false,
       "title": "Удаление проекта",
-      "figmaNode": "TODO",
+      "figmaNode": null,
       "brief": "Модалка подтверждения удаления проекта: что будет удалено, поле ввода названия проекта для подтверждения, кнопки «Отмена» и «Удалить проект» (неактивна, пока название не совпадает).",
-      "expect": ["form/destructive-label", "form/no-nested-modal", "form/button-order"]
+      "expect": [
+        "form/destructive-label",
+        "form/no-nested-modal",
+        "form/button-order"
+      ]
     },
     {
       "id": "T04",
       "type": "figma",
       "holdout": true,
       "title": "Приглашение участника",
-      "figmaNode": "TODO",
+      "figmaNode": null,
       "brief": "Модалка приглашения в команду: email (несколько через запятую), роль (Наблюдатель / Редактор / Администратор), необязательное сообщение, кнопка «Отправить приглашение».",
-      "expect": ["form/radio-for-few", "form/inline-errors", "form/submit-state"]
+      "expect": [
+        "form/radio-for-few",
+        "form/inline-errors",
+        "form/submit-state"
+      ]
     },
     {
       "id": "T05",
       "type": "figma",
       "holdout": false,
       "title": "Список заказов",
-      "figmaNode": "TODO",
+      "figmaNode": null,
       "brief": "Таблица заказов: номер, клиент, сумма, статус (бейдж), дата. Фильтр по статусу, поиск, пагинация. Пустое состояние, если по фильтру ничего не найдено.",
-      "expect": ["copy/empty-state-action"]
+      "expect": [
+        "state/empty"
+      ]
     },
     {
       "id": "T06",
@@ -52,7 +72,11 @@
       "holdout": false,
       "title": "Восстановление пароля",
       "brief": "Сделай экран восстановления пароля. Поле email и кнопка «Отправить ссылку». После отправки — сообщение, что письмо отправлено, и ссылка «Вернуться ко входу». Если email не найден — ошибка под полем.",
-      "expect": ["form/visible-label", "form/inline-errors", "form/submit-state"]
+      "expect": [
+        "form/visible-label",
+        "form/inline-errors",
+        "form/submit-state"
+      ]
     },
     {
       "id": "T07",
@@ -68,7 +92,11 @@
       "holdout": true,
       "title": "Мастер подключения",
       "brief": "Сделай мастер подключения интеграции из 3 шагов: 1) выбор сервиса из списка, 2) ввод API-ключа с проверкой, 3) настройка частоты синхронизации (раз в час / раз в день / вручную). Кнопки «Назад» и «Далее», на последнем шаге — «Подключить».",
-      "expect": ["form/radio-for-few", "form/submit-state", "form/inline-errors"]
+      "expect": [
+        "form/radio-for-few",
+        "form/submit-state",
+        "form/inline-errors"
+      ]
     },
     {
       "id": "T09",
@@ -76,7 +104,9 @@
       "holdout": false,
       "title": "Ошибка загрузки",
       "brief": "Сделай экран списка документов с тремя состояниями: загрузка, ошибка загрузки (с кнопкой «Повторить»), пустой список (с кнопкой «Загрузить документ»). Покажи все три в отдельных stories.",
-      "expect": ["copy/empty-state-action"]
+      "expect": [
+        "state/empty"
+      ]
     },
     {
       "id": "T10",
@@ -84,7 +114,10 @@
       "holdout": true,
       "title": "Управление участниками",
       "brief": "Сделай страницу участников команды: таблица (имя, email, роль, последняя активность), смена роли прямо в строке, удаление участника с подтверждением, кнопка «Пригласить участника» в шапке.",
-      "expect": ["form/destructive-label", "form/no-nested-modal"]
+      "expect": [
+        "form/destructive-label",
+        "form/no-nested-modal"
+      ]
     }
   ]
 }

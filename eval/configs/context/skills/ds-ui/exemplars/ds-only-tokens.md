@@ -2,18 +2,14 @@
 
 ## Плохо
 ```tsx
-<div style={{ padding: 13, color: "#c62828" }}>Ошибка</div>
-<div className="p-[13px] text-[#c62828]">Ошибка</div>
+<div style={{ padding: 16, color: "#c62828" }}>Ошибка</div>
+<Flex gap="16px" mt="24px">…</Flex>
 ```
 
 ## Хорошо
 ```tsx
-<div style={{ padding: "var(--space-3)", color: "var(--color-danger-default)" }}>Ошибка</div>
+<Flex gap="s4" mt="s6">…</Flex>
+<FormField.Message color="critical">Введите название проекта</FormField.Message>
 ```
 
-А ещё лучше — компонент DS, у которого это уже зашито:
-```tsx
-<InlineMessage tone="error">Ошибка</InlineMessage>
-```
-
-Почему: hex и px выглядят правильно сегодня и ломаются при смене темы или бренда. На ревью глазами такое не видно.
+Почему: hex и px выглядят правильно сегодня и ломаются при смене темы. ViennaUI принимает строку в пропсах отступов, поэтому `"16px"` не даст ошибку типов — только линтер.

@@ -5,8 +5,8 @@ import type { PilotConfig } from "./analyze-core.ts";
 export const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "../..");
 
 export interface FullConfig extends PilotConfig {
-  dsStylesImport: string;
-  figmaFileUrl: string;
+  dsProvider: string;
+  figmaFileUrl: string | null;
   screensDir: string;
   storybookUrl: string;
 }
@@ -21,7 +21,7 @@ export interface Task {
   holdout: boolean;
   title: string;
   brief: string;
-  figmaNode?: string;
+  figmaNode?: string | null;
   expect: string[];
 }
 

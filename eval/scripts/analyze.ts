@@ -20,7 +20,7 @@ if (!files.length) {
 
 const manifestPath = path.join(ROOT, "eval/ds-manifest.json");
 const manifest = fs.existsSync(manifestPath)
-  ? (JSON.parse(fs.readFileSync(manifestPath, "utf8")).components as string[])
+  ? (JSON.parse(fs.readFileSync(manifestPath, "utf8")).packages as Record<string, string[]>)
   : undefined;
 if (!manifest) console.error("⚠ Нет eval/ds-manifest.json — выдуманные компоненты считаются только по typecheck. Запустите npm run eval:manifest.");
 

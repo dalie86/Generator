@@ -1,9 +1,9 @@
 {
-  "name": "ds-ai-pilot",
+  "name": "vienna-ai-pilot",
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "Пилот: генерация UI агентом по промпту и макету с опорой на дизайн-систему (Figma MCP + Code Connect + Storybook MCP)",
+  "description": "Пилот: генерация UI агентом по промпту и макету на дизайн-системе ViennaUI (Figma MCP + Code Connect + Storybook MCP)",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -11,7 +11,6 @@
     "lint": "eslint src",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "tokens": "style-dictionary build --config tokens/sd.config.mjs",
     "figma:connect:publish": "figma connect publish",
     "figma:connect:parse": "figma connect parse",
     "test:tools": "node --test --import tsx eval/tools/*.test.ts && node --test eslint/plugin-ds.test.js",
@@ -23,8 +22,13 @@
     "eval:report": "tsx eval/scripts/report.ts"
   },
   "dependencies": {
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "styled-components": "^6.1.0",
+    "vienna-ui": "^12.82.0",
+    "vienna.icons": "^5.9.0",
+    "vienna.ui-primitives": "^4.54.0",
+    "vienna.tokens": "^3.11.0"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.10.0",
@@ -36,13 +40,12 @@
     "@storybook/addon-mcp": "latest",
     "@storybook/react-vite": "^10.0.0",
     "@types/node": "^22.0.0",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
     "@vitejs/plugin-react": "^5.0.0",
     "eslint": "^9.0.0",
     "eslint-plugin-react-hooks": "^5.0.0",
     "storybook": "^10.0.0",
-    "style-dictionary": "^5.0.0",
     "tsx": "^4.19.0",
     "typescript": "^5.6.0",
     "typescript-eslint": "^8.0.0",

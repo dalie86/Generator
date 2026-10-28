@@ -1,9 +1,15 @@
 {
-  "$comment": "Единая настройка пилота. Заполните поля с TODO, когда подключите дизайн-систему.",
-  "dsPackage": "TODO-ds-package",
-  "dsImportPaths": ["TODO-ds-package"],
-  "dsStylesImport": "TODO-ds-package/styles.css",
-  "figmaFileUrl": "TODO",
+  "$comment": "Единая настройка пилота. Дизайн-система — ViennaUI (Райффайзенбанк), github.com/Raiffeisen-DGTL/ViennaUI.",
+  "dsPackage": "vienna-ui",
+  "dsImportPaths": [
+    "vienna-ui",
+    "vienna.icons",
+    "vienna.tokens",
+    "vienna.ui-primitives",
+    "vienna.ui-theme",
+    "vienna.react-use"
+  ],
+  "figmaFileUrl": null,
   "screensDir": "src/screens",
   "storybookUrl": "http://localhost:6006",
   "foreignUiImports": [
@@ -17,6 +23,47 @@
     "@/components/ui",
     "components/ui"
   ],
-  "rawInteractiveElements": ["button", "input", "select", "textarea", "dialog", "table"],
-  "allowedRawProperties": ["display", "flex", "gridTemplateColumns"]
+  "rawInteractiveElements": [
+    "button",
+    "input",
+    "select",
+    "textarea",
+    "dialog",
+    "table"
+  ],
+  "allowedRawProperties": [
+    "display",
+    "flex",
+    "gridTemplateColumns"
+  ],
+  "dsProvider": "ThemeProvider из vienna.ui-primitives оборачивает приложение и Storybook; отдельного CSS нет — стили на styled-components",
+  "spacingProps": [
+    "margin",
+    "marginTop",
+    "marginBottom",
+    "marginLeft",
+    "marginRight",
+    "marginHorizontal",
+    "marginVertical",
+    "m",
+    "mt",
+    "mb",
+    "ml",
+    "mr",
+    "mh",
+    "mv",
+    "padding",
+    "paddingTop",
+    "paddingBottom",
+    "paddingLeft",
+    "paddingRight",
+    "p",
+    "pt",
+    "pb",
+    "pl",
+    "pr",
+    "gap",
+    "rowGap",
+    "columnGap"
+  ]
 }

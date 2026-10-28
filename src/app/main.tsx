@@ -1,16 +1,15 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-// TODO: подключите стили дизайн-системы (путь из pilot.config.json → dsStylesImport)
-// import "TODO-ds-package/styles.css";
+import { ViennaRoot } from "./ViennaRoot";
 
-const screens = import.meta.glob("../screens/**/*.tsx", { eager: true }) as Record<
+const screens = import.meta.glob("../screens/**/index.tsx", { eager: true }) as Record<
   string,
   { default?: () => JSX.Element }
 >;
 
 function App() {
   const name = new URLSearchParams(location.search).get("screen");
-  const entry = Object.entries(screens).find(([path]) => name && path.includes(`/${name}`));
+  const entry = Object.entries(screens).find(([path]) => name && path.includes(`/${name}/`));
   if (!entry?.[1].default) {
     return (
       <ul>
@@ -31,6 +30,8 @@ function App() {
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <App />
+    <ViennaRoot>
+      <App />
+    </ViennaRoot>
   </StrictMode>,
 );

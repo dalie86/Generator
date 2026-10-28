@@ -5,7 +5,7 @@
 // Использование: npm run eval:config -- C
 import fs from "node:fs";
 import path from "node:path";
-import { ROOT, parseConfig } from "../tools/config.ts";
+import { ROOT, loadConfig, parseConfig } from "../tools/config.ts";
 
 const cfg = parseConfig(process.argv[2]);
 const ctx = path.join(ROOT, "eval/configs/context");
@@ -30,6 +30,10 @@ if (cfg === "C") {
 }
 
 fs.writeFileSync(path.join(ROOT, ".pilot-config"), cfg + "\n");
+
+if (cfg !== "A" && !loadConfig().figmaFileUrl) {
+  console.warn("⚠ Figma-файл не задан (pilot.config.json → figmaFileUrl): Figma MCP подключён, но Code Connect-маппингов нет.\n  Пока Figma нет, конфигурация B не отличается от A — сравнивайте A и C.\n");
+}
 
 const on = (x: boolean) => (x ? "да " : "нет");
 console.log(`Конфигурация ${cfg}:

@@ -4,9 +4,9 @@
 
 ## Перед экспериментом (один раз)
 
-1. `npm install`, `npm run eval:manifest` — список компонентов DS для анализатора.
+1. `npm install`, `npm run eval:manifest` — список компонентов ViennaUI для анализатора.
 2. `npm run test:tools` — инструменты измерения работают.
-3. Дизайнер заполняет `figmaNode` для T01–T05 в `eval/tasks/tasks.json` и кладёт скриншоты фреймов в `eval/tasks/T0x/reference.png` (нужны для конфигурации A).
+3. Когда появятся макеты: дизайнер заполняет `figmaNode` для T01–T05 в `eval/tasks/tasks.json` и кладёт скриншоты фреймов в `eval/tasks/T0x/reference.png` (нужны для конфигурации A). Пока макетов нет — сравниваются A и C.
 4. Зафиксируйте в этом файле модель агента и версии: Claude Code / Cursor, Storybook, Figma MCP.
 
 ## Прогон
