@@ -1,0 +1,15 @@
+node_modules/
+dist/
+storybook-static/
+tokens/build/
+test-results/
+playwright-report/
+eval/.disabled/
+.env
+.DS_Store
+# Генерируются из eval/configs командой npm run eval:config
+/AGENTS.md
+/CLAUDE.md
+/.mcp.json
+/.claude/skills/ds-ui/
+/.pilot-config

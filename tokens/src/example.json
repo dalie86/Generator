@@ -1,0 +1,24 @@
+{
+  "color": {
+    "$type": "color",
+    "bg": {
+      "default": { "$value": "#ffffff", "$description": "Фон страницы и карточек. Не для акцентов." },
+      "subtle": { "$value": "#f3f5f8", "$description": "Фон вторичных областей. Не для состояний ошибок." }
+    },
+    "text": {
+      "default": { "$value": "#1b1f24", "$description": "Основной текст." },
+      "muted": { "$value": "#5b6470", "$description": "Подписи и вспомогательный текст. Не для ссылок." }
+    },
+    "danger": {
+      "default": { "$value": "#c62828", "$description": "Ошибки и деструктивные действия. Только они." }
+    }
+  },
+  "space": {
+    "$type": "dimension",
+    "1": { "$value": "4px" },
+    "2": { "$value": "8px" },
+    "3": { "$value": "12px" },
+    "4": { "$value": "16px" },
+    "6": { "$value": "24px" }
+  }
+}

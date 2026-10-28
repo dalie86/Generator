@@ -1,0 +1,22 @@
+{
+  "$comment": "Единая настройка пилота. Заполните поля с TODO, когда подключите дизайн-систему.",
+  "dsPackage": "TODO-ds-package",
+  "dsImportPaths": ["TODO-ds-package"],
+  "dsStylesImport": "TODO-ds-package/styles.css",
+  "figmaFileUrl": "TODO",
+  "screensDir": "src/screens",
+  "storybookUrl": "http://localhost:6006",
+  "foreignUiImports": [
+    "@mui/",
+    "@chakra-ui/",
+    "antd",
+    "@radix-ui/",
+    "@headlessui/",
+    "react-bootstrap",
+    "@mantine/",
+    "@/components/ui",
+    "components/ui"
+  ],
+  "rawInteractiveElements": ["button", "input", "select", "textarea", "dialog", "table"],
+  "allowedRawProperties": ["display", "flex", "gridTemplateColumns"]
+}
