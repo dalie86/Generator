@@ -1,4 +1,4 @@
-# vienna-ai-pilot
+# Generator
 
 Пилот: может ли агент (Claude Code, Cursor) собирать экраны **из дизайн-системы [ViennaUI](https://github.com/Raiffeisen-DGTL/ViennaUI)** по текстовому описанию — а когда появятся макеты, и по Figma — и насколько ему помогают Storybook MCP, Figma MCP с Code Connect и правила в репозитории.
 
