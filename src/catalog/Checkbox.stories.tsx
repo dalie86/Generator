@@ -1,19 +1,12 @@
-// Каталог для агента: Storybook MCP отдаёт эти описания и примеры как документацию компонента.
+// Каталог для агента: примеры Checkbox. Описание и пропсы — в src/ds/Checkbox.tsx (JSDoc), их отдаёт Storybook MCP.
 // Источник API — README компонента в github.com/Raiffeisen-DGTL/ViennaUI/tree/master/src/Checkbox
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Checkbox } from "vienna-ui";
+import { Checkbox } from "../ds/Checkbox";
 
 const meta = {
   title: "Vienna/Checkbox",
   component: Checkbox,
   tags: ["autodocs"],
-  parameters: {
-    docs: {
-      description: {
-        component: `**Checkbox** — независимые «да/нет» или выбор нескольких вариантов. Для мгновенного включения настройки — \`Switcher\`.`,
-      },
-    },
-  },
 } satisfies Meta;
 
 export default meta;

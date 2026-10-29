@@ -1,25 +1,13 @@
-// Каталог для агента: Storybook MCP отдаёт эти описания и примеры как документацию компонента.
+// Каталог для агента: примеры Input. Описание и пропсы — в src/ds/Input.tsx (JSDoc), их отдаёт Storybook MCP.
 // Источник API — README компонента в github.com/Raiffeisen-DGTL/ViennaUI/tree/master/src/Input
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { FormField, Input } from "vienna-ui";
+import { FormField } from "vienna-ui";
+import { Input } from "../ds/Input";
 
 const meta = {
   title: "Vienna/Input",
   component: Input,
   tags: ["autodocs"],
-  parameters: {
-    docs: {
-      description: {
-        component: `**Input** — короткий текст или число: имя, email, сумма.
-
-**Когда не использовать:** текст длиннее 5 слов — \`Textarea\`. Телефон, счёт, карта, дата — специализированные \`InputPhone\`, \`InputAccount\`, \`InputCard\`, \`InputDate\`. Пароль — \`InputPassword\`.
-Всегда внутри \`FormField\` с подписью. Ошибка — проп \`invalid\` плюс \`FormField.Message color="critical"\`.
-Размер \`size\`: xs–xxl, по умолчанию m.
-
-**Важно:** \`onChange\` получает объект \`{ value, event, options }\`, а не DOM-событие: \`onChange={({ value }) => setValue(value)}\`.`,
-      },
-    },
-  },
 } satisfies Meta;
 
 export default meta;

@@ -1,27 +1,14 @@
-// Каталог для агента: Storybook MCP отдаёт эти описания и примеры как документацию компонента.
+// Каталог для агента: примеры FormField. Описание и пропсы — в src/ds/FormField.tsx (JSDoc), их отдаёт Storybook MCP.
 // Источник API — README компонента в github.com/Raiffeisen-DGTL/ViennaUI/tree/master/src/FormField
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
-import { FormField, Input } from "vienna-ui";
+import { Input } from "vienna-ui";
+import { FormField } from "../ds/FormField";
 
 const meta = {
   title: "Vienna/FormField",
   component: FormField,
   tags: ["autodocs"],
-  parameters: {
-    docs: {
-      description: {
-        component: `**FormField** — обёртка любого поля формы: подпись, само поле, сообщение.
-
-**Всегда** оборачивайте \`Input\`, \`Textarea\`, \`Select\` и другие поля в \`FormField\`:
-- \`FormField.Label\` — видимая подпись над полем. Placeholder подпись не заменяет. Обязательное поле — \`required\` у Label.
-- \`FormField.Content\` — само поле и сообщение.
-- \`FormField.Message\` — подсказка или ошибка под полем. Ошибка: \`color="critical"\`, предупреждение: \`color="warning"\`.
-
-Ошибка пишется текстом: что не так и как исправить. Поле при ошибке получает \`invalid\`.`,
-      },
-    },
-  },
 } satisfies Meta;
 
 export default meta;

@@ -1,24 +1,14 @@
-// Каталог для агента: Storybook MCP отдаёт эти описания и примеры как документацию компонента.
+// Каталог для агента: примеры Select. Описание и пропсы — в src/ds/Select.tsx (JSDoc), их отдаёт Storybook MCP.
 // Источник API — README компонента в github.com/Raiffeisen-DGTL/ViennaUI/tree/master/src/Select
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
-import { FormField, Select } from "vienna-ui";
+import { FormField } from "vienna-ui";
+import { Select } from "../ds/Select";
 
 const meta = {
   title: "Vienna/Select",
   component: Select,
   tags: ["autodocs"],
-  parameters: {
-    docs: {
-      description: {
-        component: `**Select** — выбор одного значения из выпадающего списка.
-
-**Когда использовать:** вариантов 4 и больше.
-**Когда не использовать:** 2–3 варианта — \`Radio\` (все варианты видны сразу). Много вариантов с поиском — \`MultiselectWithSearch\` или \`Search\`.
-Значение — проп \`value\`, изменение — \`onSelect\`, который получает \`{ value }\`. Варианты — \`Select.Option\`.`,
-      },
-    },
-  },
 } satisfies Meta;
 
 export default meta;

@@ -1,23 +1,14 @@
-// Каталог для агента: Storybook MCP отдаёт эти описания и примеры как документацию компонента.
+// Каталог для агента: примеры Radio. Описание и пропсы — в src/ds/Radio.tsx (JSDoc), их отдаёт Storybook MCP.
 // Источник API — README компонента в github.com/Raiffeisen-DGTL/ViennaUI/tree/master/src/Radio
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
-import { Groups, Radio } from "vienna-ui";
+import { Groups } from "vienna-ui";
+import { Radio } from "../ds/Radio";
 
 const meta = {
   title: "Vienna/Radio",
   component: Radio,
   tags: ["autodocs"],
-  parameters: {
-    docs: {
-      description: {
-        component: `**Radio** — выбор одного варианта из 2–5, все варианты видны сразу.
-
-Группа радиокнопок — \`Groups design="vertical"\` (или горизонтально, если подписи короткие). У всех кнопок группы общий \`name\`.
-Состояние — \`checked\`, изменение — \`onChange\`, который получает \`{ value }\`.`,
-      },
-    },
-  },
 } satisfies Meta;
 
 export default meta;

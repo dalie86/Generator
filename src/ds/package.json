@@ -1,0 +1,6 @@
+{
+  "$comment": "Только для документации Storybook MCP: агент видит импорт from \"vienna-ui\". Модули здесь — тонкие обёртки над vienna-ui с описанием.",
+  "name": "vienna-ui",
+  "private": true,
+  "type": "module"
+}

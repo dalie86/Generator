@@ -1,21 +1,13 @@
-// Каталог для агента: Storybook MCP отдаёт эти описания и примеры как документацию компонента.
+// Каталог для агента: примеры Tabs. Описание и пропсы — в src/ds/Tabs.tsx (JSDoc), их отдаёт Storybook MCP.
 // Источник API — README компонента в github.com/Raiffeisen-DGTL/ViennaUI/tree/master/src/Tabs
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
-import { Tabs } from "vienna-ui";
+import { Tabs } from "../ds/Tabs";
 
 const meta = {
   title: "Vienna/Tabs",
   component: Tabs,
   tags: ["autodocs"],
-  parameters: {
-    docs: {
-      description: {
-        component: `**Tabs** — переключение между разделами одного уровня на странице. Значение — \`value\`, изменение — \`onChange\` с \`{ value }\`, вкладки — \`Tabs.Tab\`.
-Не для шагов процесса — для этого \`Stepper\` или \`Wizard\`.`,
-      },
-    },
-  },
 } satisfies Meta;
 
 export default meta;

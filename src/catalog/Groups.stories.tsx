@@ -1,21 +1,13 @@
-// Каталог для агента: Storybook MCP отдаёт эти описания и примеры как документацию компонента.
+// Каталог для агента: примеры Groups. Описание и пропсы — в src/ds/Groups.tsx (JSDoc), их отдаёт Storybook MCP.
 // Источник API — README компонента в github.com/Raiffeisen-DGTL/ViennaUI/tree/master/src/Groups
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Button, Groups } from "vienna-ui";
+import { Button } from "vienna-ui";
+import { Groups } from "../ds/Groups";
 
 const meta = {
   title: "Vienna/Groups",
   component: Groups,
   tags: ["autodocs"],
-  parameters: {
-    docs: {
-      description: {
-        component: `**Groups** — набор элементов с отступами между ними: кнопки, поля формы.
-\`design="horizontal"\` (по умолчанию) или \`"vertical"\`, расстояние — \`size\`: xs, s, m, l, xl.
-Для раскладки страницы со сложным выравниванием — \`Flex\` или \`Grid\`.`,
-      },
-    },
-  },
 } satisfies Meta;
 
 export default meta;

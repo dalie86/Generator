@@ -39,7 +39,8 @@
 ```
 pilot.config.json          ViennaUI, списки запрещённого, шкала отступов
 src/app/ViennaRoot.tsx     ThemeProvider ViennaUI для приложения и Storybook
-src/catalog/               каталог ViennaUI для агента: 19 компонентов с «когда использовать / когда нет»
+src/catalog/               stories каталога ViennaUI: 19 компонентов
+src/ds/                    описания и пропсы компонентов для Storybook MCP (обёртки над vienna-ui)
 src/screens/<задача>/      сюда агент пишет экраны
 .storybook/                Storybook 10 + addon-mcp (MCP на /mcp)
 figma/                     шаблон Code Connect для ViennaUI (ждёт Figma-файл)

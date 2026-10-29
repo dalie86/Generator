@@ -1,7 +1,7 @@
 # Generator — контекст проекта
 
 > Читать первым в любом новом диалоге. Здесь всё, чтобы продолжить работу без повторных объяснений и без разворачивания проекта заново.
-> Обновлено: 29.10.2026.
+> Обновлено: 29.10.2026 (Storybook MCP проверен вживую).
 
 ## 1. Что это и зачем
 
@@ -38,7 +38,9 @@
 ```
 pilot.config.json          ViennaUI, запрещённые библиотеки, шкала отступов
 src/app/ViennaRoot.tsx     ThemeProvider ViennaUI (theme={}) для приложения и Storybook
-src/catalog/               каталог ViennaUI для агента: 19 компонентов, «когда использовать / когда нет» + пример
+src/catalog/               stories каталога ViennaUI: 19 компонентов, примеры использования
+src/ds/                    «карточки» компонентов для Storybook MCP: JSDoc «когда использовать / когда нет»
+                           + пропсы из типов vienna-ui; рендерят настоящий vienna-ui. В экранах НЕ импортировать
 src/screens/<задача>/      сюда агент пишет экраны (index.tsx + Screen.stories.tsx)
 .storybook/                Storybook 10 + @storybook/addon-mcp (MCP на http://localhost:6006/mcp)
 figma/                     шаблон Code Connect (Button) — ждёт Figma-файл
@@ -88,6 +90,14 @@ npm run eval:report              # → eval/results/REPORT.md
 - Официального Storybook или Figma у ViennaUI в открытом доступе нет — каталог в `src/catalog/` написан по README компонентов.
 - В `package.json` у `vienna-ui` есть `exports`: `require.resolve("vienna-ui/package.json")` не работает.
 
+**Storybook MCP и ViennaUI (проверено 29.10.2026, Storybook 10.6.5):**
+- Манифест компонентов Storybook **не анализирует файлы из `node_modules`** — для `component: Button` из `vienna-ui` агент получал только примеры, без описания и пропсов.
+- Решение: `src/ds/<Компонент>.tsx` — тонкая обёртка с JSDoc-описанием, пропсы `ComponentProps<typeof ViennaX>`; в `meta.component` stories стоит обёртка. У составных компонентов обёртка наследует части (`Modal.Body`, `Select.Option`…).
+- Пропсы читает `react-docgen-typescript` (`.storybook/main.ts`, `propFilter` оставляет только `vienna*`); `react-docgen` по умолчанию уходит в JS из `node_modules` и пропсов не видит.
+- `src/ds/package.json` с `"name": "vienna-ui"` — чтобы в документации агент видел `import … from 'vienna-ui'`, а не имя нашего репозитория. Тег `@import` в JSDoc с `react-docgen-typescript` не работает.
+- `docs-show` теперь отдаёт по каждому компоненту: описание, примеры, тип `Props`. Перечисления (`ButtonDesign`) не раскрываются — значения продублированы в описании.
+- MCP: `http://localhost:6006/mcp`, инструменты `docs-list`, `docs-show`, `docs-show-story`, `stories-find-by-component`, `get-storybook-story-instructions`, `stories-preview`, `stories-changed`.
+
 ## 7. Принятые решения
 
 - **Корневые `AGENTS.md`, `CLAUDE.md`, `.mcp.json`, `.claude/skills/ds-ui` не коммитим** — их создаёт `eval:config` для нужной конфигурации. Иначе контекст протечёт в конфигурацию A и сравнение потеряет смысл. Поэтому контекст проекта — в `docs/`, а не в корневом CLAUDE.md.
@@ -111,8 +121,7 @@ npm run eval:report              # → eval/results/REPORT.md
 - [x] `npm install` на Mac, typecheck и lint чистые на установленной `vienna-ui` 12.82
 
 Дальше:
-- [ ] Визуально проверить Storybook (`npm run storybook`) — раздел Vienna, 19 компонентов без ошибок
-- [ ] Проверить, что Storybook MCP отвечает на `http://localhost:6006/mcp`
+- [x] Storybook: 20 историй рендерятся без ошибок, MCP отвечает и отдаёт описание + пропсы + импорт по всем 19 компонентам
 - [ ] Первый прогон: T06 в конфигурациях A и C (по `eval/RUNBOOK.md`)
 - [ ] Заменить задачи-примеры на реальные экраны продукта
 - [ ] Когда появится Figma-библиотека: `figmaFileUrl`, маппинги Code Connect, фреймы для T01–T05 — и конфигурация B

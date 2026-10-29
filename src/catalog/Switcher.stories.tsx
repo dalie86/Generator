@@ -1,20 +1,13 @@
-// Каталог для агента: Storybook MCP отдаёт эти описания и примеры как документацию компонента.
+// Каталог для агента: примеры Switcher. Описание и пропсы — в src/ds/Switcher.tsx (JSDoc), их отдаёт Storybook MCP.
 // Источник API — README компонента в github.com/Raiffeisen-DGTL/ViennaUI/tree/master/src/Switcher
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
-import { Switcher } from "vienna-ui";
+import { Switcher } from "../ds/Switcher";
 
 const meta = {
   title: "Vienna/Switcher",
   component: Switcher,
   tags: ["autodocs"],
-  parameters: {
-    docs: {
-      description: {
-        component: `**Switcher** — включение и выключение настройки, которая применяется сразу. Изменение — \`onChange\` с \`{ value }\`. Если настройка применяется только после кнопки «Сохранить» — \`Checkbox\`.`,
-      },
-    },
-  },
 } satisfies Meta;
 
 export default meta;

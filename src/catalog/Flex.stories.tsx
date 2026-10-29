@@ -1,20 +1,13 @@
-// Каталог для агента: Storybook MCP отдаёт эти описания и примеры как документацию компонента.
+// Каталог для агента: примеры Flex. Описание и пропсы — в src/ds/Flex.tsx (JSDoc), их отдаёт Storybook MCP.
 // Источник API — README компонента в github.com/Raiffeisen-DGTL/ViennaUI/tree/master/src/Flex
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Badge, Flex, Heading } from "vienna-ui";
+import { Badge, Heading } from "vienna-ui";
+import { Flex } from "../ds/Flex";
 
 const meta = {
   title: "Vienna/Flex",
   component: Flex,
   tags: ["autodocs"],
-  parameters: {
-    docs: {
-      description: {
-        component: `**Flex** — раскладка: строка заголовка с действиями, колонки. Поддерживает свойства flex-контейнера: \`justifyContent\`, \`alignItems\`, \`direction\`, \`wrap\`.
-Отступ между элементами — \`gap\` **только из шкалы ViennaUI**: s1…s16. Никаких \`"16px"\`.`,
-      },
-    },
-  },
 } satisfies Meta;
 
 export default meta;

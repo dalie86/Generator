@@ -1,19 +1,13 @@
-// Каталог для агента: Storybook MCP отдаёт эти описания и примеры как документацию компонента.
+// Каталог для агента: примеры Card. Описание и пропсы — в src/ds/Card.tsx (JSDoc), их отдаёт Storybook MCP.
 // Источник API — README компонента в github.com/Raiffeisen-DGTL/ViennaUI/tree/master/src/Card
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Card, Text } from "vienna-ui";
+import { Text } from "vienna-ui";
+import { Card } from "../ds/Card";
 
 const meta = {
   title: "Vienna/Card",
   component: Card,
   tags: ["autodocs"],
-  parameters: {
-    docs: {
-      description: {
-        component: `**Card** — блок с фоном и заголовком внутри страницы: «Контактные данные», «Реквизиты». \`title\`, \`actions\` (кнопки в шапке), \`footer\`.`,
-      },
-    },
-  },
 } satisfies Meta;
 
 export default meta;

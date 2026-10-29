@@ -1,21 +1,12 @@
-// Каталог для агента: Storybook MCP отдаёт эти описания и примеры как документацию компонента.
+// Каталог для агента: примеры Alert. Описание и пропсы — в src/ds/Alert.tsx (JSDoc), их отдаёт Storybook MCP.
 // Источник API — README компонента в github.com/Raiffeisen-DGTL/ViennaUI/tree/master/src/Alert
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Alert } from "vienna-ui";
+import { Alert } from "../ds/Alert";
 
 const meta = {
   title: "Vienna/Alert",
   component: Alert,
   tags: ["autodocs"],
-  parameters: {
-    docs: {
-      description: {
-        component: `**Alert** — сообщение внутри страницы: важная информация, результат, ошибка уровня экрана.
-\`design\`: plain, accent, success, warning, error. Заголовок — \`title\`.
-Ошибку конкретного поля показывайте в \`FormField.Message\`, а не в Alert. Временное уведомление о результате — \`Notifications\`.`,
-      },
-    },
-  },
 } satisfies Meta;
 
 export default meta;

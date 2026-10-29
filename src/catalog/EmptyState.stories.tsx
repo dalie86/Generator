@@ -1,20 +1,13 @@
-// Каталог для агента: Storybook MCP отдаёт эти описания и примеры как документацию компонента.
+// Каталог для агента: примеры EmptyState. Описание и пропсы — в src/ds/EmptyState.tsx (JSDoc), их отдаёт Storybook MCP.
 // Источник API — README компонента в github.com/Raiffeisen-DGTL/ViennaUI/tree/master/src/EmptyState
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Button, EmptyState } from "vienna-ui";
+import { Button } from "vienna-ui";
+import { EmptyState } from "../ds/EmptyState";
 
 const meta = {
   title: "Vienna/EmptyState",
   component: EmptyState,
   tags: ["autodocs"],
-  parameters: {
-    docs: {
-      description: {
-        component: `**EmptyState** — пустой список или раздел. Объясняет, что здесь появится, и даёт действие.
-\`EmptyState.Title\`, \`EmptyState.Description\`, \`EmptyState.Actions\` с кнопками.`,
-      },
-    },
-  },
 } satisfies Meta;
 
 export default meta;

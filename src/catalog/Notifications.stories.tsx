@@ -1,20 +1,13 @@
-// Каталог для агента: Storybook MCP отдаёт эти описания и примеры как документацию компонента.
+// Каталог для агента: примеры Notifications. Описание и пропсы — в src/ds/Notifications.tsx (JSDoc), их отдаёт Storybook MCP.
 // Источник API — README компонента в github.com/Raiffeisen-DGTL/ViennaUI/tree/master/src/Notifications
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Button, NotificationService, Notifications } from "vienna-ui";
+import { Button, NotificationService } from "vienna-ui";
+import { Notifications } from "../ds/Notifications";
 
 const meta = {
   title: "Vienna/Notifications",
   component: Notifications,
   tags: ["autodocs"],
-  parameters: {
-    docs: {
-      description: {
-        component: `**Notifications** — всплывающие уведомления о результате действия: «Изменения сохранены».
-Один \`<Notifications service={service} />\` на приложение, показ — методами \`NotificationService\` (\`plain\` и другие).`,
-      },
-    },
-  },
 } satisfies Meta;
 
 export default meta;

@@ -1,19 +1,13 @@
-// Каталог для агента: Storybook MCP отдаёт эти описания и примеры как документацию компонента.
+// Каталог для агента: примеры Heading. Описание и пропсы — в src/ds/Heading.tsx (JSDoc), их отдаёт Storybook MCP.
 // Источник API — README компонента в github.com/Raiffeisen-DGTL/ViennaUI/tree/master/src/Typography
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Groups, Heading, Text } from "vienna-ui";
+import { Groups, Text } from "vienna-ui";
+import { Heading } from "../ds/Heading";
 
 const meta = {
   title: "Vienna/Typography",
   component: Heading,
   tags: ["autodocs"],
-  parameters: {
-    docs: {
-      description: {
-        component: `**Типографика** — \`Heading\` (и \`H1\`…\`H6\`) для заголовков, \`Text\` / \`P\` / \`Span\` для текста. Никаких \`<h1>\` и \`<p>\` со своими стилями.`,
-      },
-    },
-  },
 } satisfies Meta;
 
 export default meta;

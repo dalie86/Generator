@@ -1,19 +1,13 @@
-// Каталог для агента: Storybook MCP отдаёт эти описания и примеры как документацию компонента.
+// Каталог для агента: примеры Textarea. Описание и пропсы — в src/ds/Textarea.tsx (JSDoc), их отдаёт Storybook MCP.
 // Источник API — README компонента в github.com/Raiffeisen-DGTL/ViennaUI/tree/master/src/Textarea
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { FormField, Textarea } from "vienna-ui";
+import { FormField } from "vienna-ui";
+import { Textarea } from "../ds/Textarea";
 
 const meta = {
   title: "Vienna/Textarea",
   component: Textarea,
   tags: ["autodocs"],
-  parameters: {
-    docs: {
-      description: {
-        component: `**Textarea** — многострочный текст: комментарий, описание, сообщение. Всегда внутри \`FormField\`.`,
-      },
-    },
-  },
 } satisfies Meta;
 
 export default meta;
