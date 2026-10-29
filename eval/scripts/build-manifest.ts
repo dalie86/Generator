@@ -4,14 +4,14 @@
 import ts from "typescript";
 import fs from "node:fs";
 import path from "node:path";
-import { createRequire } from "node:module";
 import { ROOT, loadConfig } from "../tools/config.ts";
 
 const pc = loadConfig();
-const require = createRequire(path.join(ROOT, "package.json"));
 
 function exportsOf(pkgName: string) {
-  const pkgJsonPath = require.resolve(`${pkgName}/package.json`);
+  // Не через require.resolve: пакеты с полем "exports" не отдают ./package.json.
+  const pkgJsonPath = path.join(ROOT, "node_modules", pkgName, "package.json");
+  if (!fs.existsSync(pkgJsonPath)) throw new Error(`${pkgName} не установлен — npm install`);
   const pkg = JSON.parse(fs.readFileSync(pkgJsonPath, "utf8"));
   const dir = path.dirname(pkgJsonPath);
   const candidates = [
@@ -37,7 +37,7 @@ function exportsOf(pkgName: string) {
           return (r.flags & ts.SymbolFlags.Value) !== 0; // только значения, не типы
         })
         .map((s) => s.getName())
-        .filter((n) => /^[A-Z]/.test(n))
+        .filter((n) => /^[A-Z]/.test(n) && !/^[A-Z][A-Z0-9]*_[A-Z0-9_]+$/.test(n)) // без констант вида BASE_ITEM_WIDTH
     : [];
   return { version: pkg.version as string, names: [...new Set(names)].sort() };
 }

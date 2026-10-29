@@ -20,7 +20,8 @@ export default tseslint.config(
   },
   {
     // Каркас приложения и stories не проверяем правилами DS.
+    // В stories хуки вызываются внутри render — штатный приём Storybook.
     files: ["src/app/**", "src/**/*.stories.tsx"],
-    rules: { "ds/no-raw-values": "off", "ds/no-raw-interactive": "off" },
+    rules: { "ds/no-raw-values": "off", "ds/no-raw-interactive": "off", "react-hooks/rules-of-hooks": "off" },
   },
 );

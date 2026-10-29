@@ -21,7 +21,7 @@ const meta = {
 } satisfies Meta;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj;
 
 const orders = [
   { id: "1042", client: "ООО «Север»", amount: "120 000 ₽", status: "Оплачен" },

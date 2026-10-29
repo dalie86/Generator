@@ -1,6 +1,6 @@
 {
-  "$comment": "Собрано из исходников ViennaUI (src/index.ts, коммит fc8324c, vienna-ui 12.82.0). Реэкспорты vienna.ui-primitives сюда не попали — после npm install пересоберите: npm run eval:manifest.",
-  "generatedAt": "2026-10-28",
+  "$comment": "Собрано из типов vienna-ui@12.82.0.",
+  "generatedAt": "2026-10-29T05:51:40.951Z",
   "packages": {
     "vienna-ui": [
       "Accordion",
@@ -29,6 +29,7 @@
       "Datepicker",
       "DatepickerRange",
       "Divider",
+      "DividerSize",
       "Drawer",
       "DropList",
       "EmptyState",
@@ -84,10 +85,12 @@
       "Radio",
       "Result",
       "RoundIcon",
+      "Screen",
       "Search",
       "Select",
       "Sidebar",
       "Skeleton",
+      "SortDirection",
       "Span",
       "Spinner",
       "Stepper",
